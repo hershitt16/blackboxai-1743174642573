@@ -1,145 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will You Date Me?</title>
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💍</text></svg>">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        body {
-            font-family: 'Open Sans', sans-serif;
-            background-image: url('https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            margin: 0;
-            padding: 0;
-        }
-        .fade-in {
-            animation: fadeIn 2s;
-        }
-        #boxLid {
-            transition: transform 1s ease-in-out;
-            transform-origin: bottom;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DL91era Style</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-color: #000000;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+    }
+    h1 {
+      font-size: 4rem;
+      font-weight: 900;
+      text-align: center;
+    }
+  </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-4">
-    <div class="bg-white bg-opacity-90 rounded-xl shadow-2xl overflow-hidden w-full max-w-2xl fade-in">
-        <div class="p-8 text-center">
-            <h1 class="text-4xl font-serif text-pink-600 mb-6">Will You Date Me?</h1>
-            <p class="text-xl text-gray-700 mb-8">I've loved you from the moment we met...</p>
-            
-            <div class="flex justify-center space-x-4 mb-8">
-                <button id="yesBtn" class="px-8 py-3 bg-pink-500 text-white rounded-full hover:bg-pink-600 transition transform hover:scale-105">
-                    <i class="fas fa-heart mr-2"></i> Yes!
-                </button>
-                <button id="noBtn" class="px-8 py-3 bg-gray-200 text-gray-700 rounded-full hover:bg-gray-300 transition">
-                    <i class="fas fa-times mr-2"></i> No
-                </button>
-            </div>
-
-            <div id="responseMessage" class="hidden text-center">
-                <p class="text-2xl text-pink-600 font-serif mb-4">You've made me the happiest person!</p>
-                
-                <div id="ringBox" class="relative w-40 h-40 mx-auto mb-6 cursor-pointer">
-                    <div class="absolute inset-0 bg-amber-800 rounded-lg shadow-lg"></div>
-                    <div id="boxLid" class="absolute inset-0 bg-amber-700 rounded-t-lg"></div>
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <i class="fas fa-ring text-yellow-300 text-4xl"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        const yesBtn = document.getElementById('yesBtn');
-        const noBtn = document.getElementById('noBtn');
-        const responseMessage = document.getElementById('responseMessage');
-
-        yesBtn.addEventListener('click', () => {
-            // Fade in proposal elements
-            document.querySelector('h1').style.opacity = '0';
-            document.querySelector('p').style.opacity = '0';
-            yesBtn.style.opacity = '0';
-            noBtn.style.opacity = '0';
-            
-                // Show response and ring box instantly
-                responseMessage.style.opacity = '1';
-                responseMessage.classList.remove('hidden');
-                createConfetti();
-                document.getElementById('boxLid').style.transform = 'rotateX(180deg)';
-        });
-
-        // Click ring box to replay animation
-        document.getElementById('ringBox').addEventListener('click', function() {
-            const lid = document.getElementById('boxLid');
-            lid.style.transform = 'rotateX(0deg)';
-            setTimeout(() => {
-                lid.style.transform = 'rotateX(180deg)';
-            }, 500);
-        });
-
-        noBtn.addEventListener('mouseover', () => {
-            noBtn.style.position = 'absolute';
-            noBtn.style.left = `${Math.random() * 80 + 10}%`;
-            noBtn.style.top = `${Math.random() * 80 + 10}%`;
-        });
-
-        // Confetti animation
-        function createConfetti() {
-            function t(t){return Math.random()*(t||1)}
-            function e(){return"rgb("+~~(256*t())+","+~~(256*t())+","+~~(256*t())+")"}
-            var n=document.createElement("canvas"),
-                o=n.getContext("2d");
-            n.width=window.innerWidth;
-            n.height=window.innerHeight;
-            document.body.appendChild(n);
-            
-            var r=[];
-            for(var i=0;i<150;i++){
-                r.push({
-                    x:t(n.width),
-                    y:-t(n.height),
-                    r:t(5)+1,
-                    d:t()+.5,
-                    c:e()
-                });
-            }
-            
-            function a(){
-                o.clearRect(0,0,n.width,n.height);
-                for(var t=0;t<150;t++){
-                    var n=r[t];
-                    o.beginPath();
-                    o.arc(n.x,n.y,n.r,0,2*Math.PI,!1);
-                    o.fillStyle=n.c;
-                    o.fill();
-                    n.y+=n.d;
-                    n.x+=Math.sin(1e3*Date.now()/1e3+n.d)/3;
-                    if(n.y>window.innerHeight){
-                        r[t]={
-                            x:t(n.width),
-                            y:-t(n.height),
-                            r:n.r,
-                            d:n.d,
-                            c:n.c
-                        };
-                    }
-                }
-                requestAnimationFrame(a);
-            }
-            a();
-        }
-    </script>
-    <canvas id="confetti" class="fixed top-0 left-0 w-full h-full pointer-events-none" style="z-index: 999;"></canvas>
+<body>
+  <h1>DL91era is the future</h1>
 </body>
 </html>
